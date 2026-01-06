@@ -1,0 +1,14 @@
+.idea/
+build/
+dist/
+node_modules/
+.ebextensions/
+.next/
+
+package.json
+package-lock.json
+env.mjs
+
+CHANGELOG.md
+
+src/helpers/redirects/*

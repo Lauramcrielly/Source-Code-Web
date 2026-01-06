@@ -1,0 +1,37 @@
+image: node:20
+
+pipelines:
+  custom:
+    dev:
+      - step:
+          name: Build
+          deployment: Test
+          caches:
+            - node
+          script:
+            - npm install --global vercel
+            - vercel pull --yes --environment=production --token=$VERCEL_CI_TOKEN
+            - vercel build --prod --token=$VERCEL_CI_TOKEN
+            - vercel deploy --prod --prebuilt --token=$VERCEL_CI_TOKEN
+    staging:
+      - step:
+          name: Build
+          deployment: Staging
+          caches:
+            - node
+          script:
+            - npm install --global vercel
+            - vercel pull --yes --environment=production --token=$VERCEL_CI_TOKEN
+            - vercel build --prod --token=$VERCEL_CI_TOKEN
+            - vercel deploy --prod --prebuilt --token=$VERCEL_CI_TOKEN
+    production:
+      - step:
+          name: Build
+          deployment: Production
+          caches:
+            - node
+          script:
+            - npm install --global vercel
+            - vercel pull --yes --environment=production --token=$VERCEL_CI_TOKEN
+            - vercel build --prod --token=$VERCEL_CI_TOKEN
+            - vercel deploy --prod --prebuilt --token=$VERCEL_CI_TOKEN
